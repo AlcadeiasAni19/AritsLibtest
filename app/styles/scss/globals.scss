@@ -1,0 +1,202 @@
+/*
+The tailwind.css file can safely be removed because
+the base tailwindcss imports have been moved into
+globals.scss for organizational purposes and convenience.
+*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// @import '../tailwind.css';
+// @import './theme/buttons';
+// @import './theme/type';
+// @import './theme/form';
+@import '/app/components/library/scss/library-index';
+
+html {
+	font-size: 14px;
+}
+
+* {
+	-webkit-font-smoothing: antialiased;
+}
+
+.checkbox {
+	@apply accent-primary-500 focus:outline-none;
+	/* focus:ring-2 focus:ring-primary-100; */
+}
+
+.sidebar-open {
+	grid-template-columns: 232px calc(100vw - 232px);
+	// grid-template-columns: 15vw 85vw;
+	@media screen and (max-width: 1023px) {
+		grid-template-columns: 0vw 100vw;
+	}
+}
+
+.sidebar-closed {
+	grid-template-columns: 56px calc(100vw - 56px);
+
+	@media screen and (max-width: 1023px) {
+		grid-template-columns: 0vw 100vw;
+	}
+}
+
+.header > div.tr > div.th {
+	// @apply z-10 static;
+	z-index: 1;
+}
+
+.header > div.tr.has-filters.has-grouped-headers:first-child > div.th:nth-child(odd) {
+	@apply z-50 odd:bg-primary-50;
+	box-shadow: 0 35px 0px #eeedf7, 0 72px 0px #eeedf7;
+}
+.header > div.tr.no-filters.has-grouped-headers:first-child > div.th:nth-child(odd) {
+	@apply odd:bg-primary-50;
+	box-shadow: 0 35px 0px #eeedf7;
+}
+
+.header > div.tr:nth-child(2) {
+	@apply static;
+}
+
+.header:first-child [data-sticky-td] {
+	background-color: #eeedf7 !important;
+}
+
+.header [data-sticky-td] {
+	@apply divide-y;
+	position: sticky !important;
+	z-index: 1000 !important;
+	background-color: inherit !important;
+}
+.header [data-sticky-td].force-no-sticky {
+	position: unset !important;
+}
+.body [data-sticky-td].force-no-sticky {
+	position: unset !important;
+}
+
+//Add Bprder to Sticky table column group
+.table div[data-sticky-td='true'] {
+	box-shadow: 0px 1px 4px 0px rgba(51, 51, 51, 0.1);
+}
+.table div[data-sticky-td='true'].force-no-sticky {
+	box-shadow: none !important;
+}
+
+// Date Time Picker
+.react-datetime-picker__wrapper {
+	display: flex;
+	flex-grow: 1;
+	flex-shrink: 0;
+	border: unset !important;
+	@apply rounded border;
+	border-color: rgb(148 163 184 / var(--tw-border-opacity)) !important;
+	border-style: solid !important;
+}
+
+/* For Webkit-based browsers (Chrome, Safari and Opera) */
+.scrollbar-hide::-webkit-scrollbar {
+	display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+
+.dd-chevron-shadow {
+	box-shadow: 0px -10px 0px #fff, 0px 10px 0px #fff, 9px 0px 0px #fff, 9px 10px 0px #fff, 9px -10px 0px #fff;
+}
+
+/**
+// -- MATERIAL REACT TABLE SCSS --
+**/
+// .MuiPaper-root {
+// 	@apply overflow-hidden rounded-md border border-slate-200 text-slate-700 shadow-none;
+// }
+// .MuiToolbar-root,
+// .MuiTablePagination-selectLabel,
+// .MuiTablePagination-displayedRows {
+// 	@apply items-center bg-slate-100 font-sans text-slate-500;
+// }
+
+// // Table Header
+// .MuiBox-root {
+// 	@apply bg-slate-100 text-xs font-medium tracking-wider text-slate-700;
+// 	svg {
+// 		@apply stroke-slate-400 hover:stroke-primary;
+// 	}
+// 	svg[focusable='false'] {
+// 		stroke: none;
+// 		@apply fill-slate-400;
+// 	}
+// }
+// // Head Labels
+// .Mui-TableHeadCell-Content-Labels {
+// 	@apply uppercase;
+// }
+// // Header Icons
+// .MuiButtonBase-root,
+// .MuiIconButton-root {
+// 	@apply opacity-100;
+// }
+// .MuiIconButton-root:hover {
+// 	@apply transition-none hover:bg-slate-100;
+// }
+// // Header Row
+// .MuiTableRow-root {
+// 	@apply shadow-none;
+// }
+// // Header Row Cell
+// .MuiTableCell-root.MuiTableCell-head {
+// 	@apply border-b-slate-200 bg-slate-100;
+// }
+
+// .MuiTableCell-root {
+// 	.Mui-TableHeadCell-Content {
+// 		@apply items-center;
+// 	}
+// 	// Cell data and header cell
+// 	@apply border-b-slate-200 align-baseline font-sans text-sm text-slate-700;
+// 	svg {
+// 		@apply stroke-slate-400 hover:stroke-primary;
+// 	}
+// }
+
+// .MuiTableRow-root.MuiTableRow-hover {
+// 	@apply transition-none hover:bg-slate-50;
+// }
+// //Divider
+// .MuiDivider-root {
+// 	@apply border border-slate-400;
+// 	height: 1rem;
+// 	&:hover {
+// 		@apply border-primary;
+// 	}
+// }
+// // Placeholder
+// .css-929hxt-MuiInputBase-input-MuiInput-input::-webkit-input-placeholder {
+// 	@apply font-sans text-sm text-slate-400 opacity-100;
+// }
+// .MuiInputBase-root.MuiInput-root {
+// 	&:hover::before {
+// 		@apply border-slate-300;
+// 	}
+// }
+// .MuiInputBase-root.MuiInput-root::before {
+// 	@apply border-b-slate-300;
+// }
+// .MuiInputBase-root.MuiInput-root::after {
+// 	@apply border-b-slate-300;
+// }
+// .MuiInput-root {
+// 	input {
+// 		@apply text-slate-700;
+// 		&:focus {
+// 			@apply ring-0;
+// 		}
+// 	}
+// }
