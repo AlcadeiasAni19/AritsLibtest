@@ -2,16 +2,21 @@
 import Button from "@components/library/Button";
 import FormItemResponseProps from "@components/library/form/FormItemResponseProps";
 import TextField from "@components/library/form/TextField";
+import { Login } from "app/api/apiService";
 import Link from "next/link";
-import { ChangeEvent, ReactNode, useState } from "react";
-import { useForm } from "react-hook-form";
+import { ChangeEvent, useState } from "react";
 
 const LoginForm = () => {
   const [FormData,setFormData] = useState<{Username: string, Password:string}>({Username:"",Password:""})
 
-  const HandleClick = async (data: any) => {
-    if (!data.name || !data.ID) {
-      alert("Username or Password is empty!");
+  const HandleClick = async () => {
+    try {
+      const loginResponse = await Login(FormData.Username, FormData.Password);
+      console.log('Login successful:', loginResponse);
+      
+    } catch (error) {
+      console.error('Login failed:', error);
+      
     }
   };
 
@@ -23,7 +28,6 @@ const LoginForm = () => {
     <div className="w-full max-w-md mt-96">
       <div
         className="bg-white shadow-md rounded px-32 pt-24 pb-32 mb-160"
-        // onSubmit={handleSubmit(LoginCheck)}
       >
         <div className="mb-16">
           <TextField
